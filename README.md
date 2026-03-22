@@ -4,7 +4,8 @@ Improved regional selective undo with active node tracking.
 
 ## Improvements over v1
 - Each TreeNode has an active flag
-- Nodes set to inactive on undo, active on redo
+- Nodes set inactive on undo, active on redo
+- New branch creation marks stale children inactive
 - selectRange only returns active nodes in range
 - Handles stale branch nodes correctly
 - Handles multiple undos without redo correctly
@@ -13,7 +14,8 @@ Improved regional selective undo with active node tracking.
 g++ -o regionalundoredov2 regionalundoredov2.cpp
 .\regionalundoredov2.exe
 
-## Open Problems
-- Position invalidation when selective undo reinserts characters
-- Collaborative selective undo remains unsolved in research
-- Semantic conflict detection not yet implemented
+## Known Limitations (v3 scope)
+- Position invalidation after selective undo
+- Characters use mutable positions not unique IDs
+- Redo after selective undo produces incorrect positions
+- Fix requires CRDT style unique character IDs
